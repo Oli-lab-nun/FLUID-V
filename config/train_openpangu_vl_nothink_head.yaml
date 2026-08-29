@@ -1,0 +1,50 @@
+### FLUID-V OpenPangu-VL stage-2 dynamic-K head training
+model_name_or_path: FreedomIntelligence/openPangu-VL-7B
+trust_remote_code: true
+IS_MDModel: true
+openpangu_vl_variant: nothink_v6_head
+lora_adapter_path: saves/openpangu_vl_nothink/v6/checkpoint-32000
+k_masks: 16
+flash_attn: disabled
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+pure_bf16: false
+deepspeed: config/deepspeed/ds_z2_config.json
+
+### dataset
+dataset: pangu_vl_distill_deepctrl,pangu_vl_distill_infinity,pangu_vl_distill_moss,pangu_vl_distill_ultrachat,pangu_vl_distill_llavanext
+dataset_dir: llamafactory/data
+media_dir: llamafactory/data/distill_data
+mix_strategy: concat
+template: openpangu_vl_nothink
+cutoff_len: 1500
+image_max_pixels: 784000
+image_min_pixels: 3136
+overwrite_cache: true
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+
+### output
+output_dir: saves/openpangu_vl_nothink/v6_head
+logging_steps: 1
+save_strategy: steps
+save_steps: 2000
+plot_loss: true
+save_only_model: false
+report_to: none
+use_swanlab: false
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 1
+learning_rate: 1.0e-4
+num_train_epochs: 2
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_find_unused_parameters: false
+ddp_timeout: 180000000
+resume_from_checkpoint: false
