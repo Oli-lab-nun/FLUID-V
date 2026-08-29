@@ -10,14 +10,14 @@ The current release provides the training and inference code used for the OpenPa
 
 ![FLUID-V Overview](assets/main.png)
 
-## Highlights
+## ✨ Highlights
 
 - **Strictly causal diffusion**: Preserves the causal inductive bias of autoregressive backbones while enabling block-wise denoising and parallel token restoration.
 - **Elastic horizon decoding**: Uses a dynamic generation horizon to expand through confident regions and contract around high-entropy visual-language reasoning steps.
 - **Vision-language training path**: Supports OpenPangu-VL adaptation with multimodal examples, image token handling, LoRA training, and optional dynamic-K head calibration.
 - **LLaMA-Factory integration**: Keeps the training workflow close to standard LLaMA-Factory usage while adding the FLUID-V model wrapper and data arguments.
 
-## Repository Layout
+## 🗂️ Repository Layout
 
 ```text
 FLUID-V/
@@ -37,7 +37,7 @@ FLUID-V/
 
 Large checkpoints, datasets, cached preprocessing files, logs, evaluation outputs, and visualization traces are not included in this source tree.
 
-## Installation
+## ⚙️ Installation
 
 Create or activate a Python environment with PyTorch, Transformers, and the common vision-language dependencies installed, then install the bundled LLaMA-Factory package in editable mode.
 
@@ -53,7 +53,7 @@ If your environment requires a specific Python executable, pass it through `FLUI
 export FLUIDV_PYTHON=/path/to/python
 ```
 
-## Model Weights
+## 📦 Model Weights
 
 Model checkpoints will be released separately. The following placeholder can be updated after the public weight upload is finalized.
 
@@ -63,7 +63,7 @@ Model checkpoints will be released separately. The following placeholder can be 
 
 For local experiments, place checkpoints under `saves/` or update the paths in the config files directly.
 
-## Dataset
+## 📚 Dataset
 
 Training data will be released separately. The LLaMA-Factory dataset registry is provided at `llamafactory/data/dataset_info.json`; put the released files under the relative paths declared there.
 
@@ -81,11 +81,11 @@ llamafactory/data/distill_data/
 
 Dataset entries use the ShareGPT-style conversation format. Image-bearing subsets should provide image paths through the `images` field, relative to `media_dir` unless absolute paths are used.
 
-## Training
+## 🏋️ Training
 
 FLUID-V uses a two-stage training recipe.
 
-### Stage 1: FLUID-V LoRA Adaptation
+### 🔹 Stage 1: FLUID-V LoRA Adaptation
 
 Stage 1 adapts the OpenPangu-VL backbone with the FLUID-V strictly causal diffusion objective.
 
@@ -95,7 +95,7 @@ scripts/train_stage1_lora.sh
 
 Main config: `config/train_openpangu_vl_nothink_lora.yaml`
 
-### Stage 2: Dynamic-K Head Calibration
+### 🔹 Stage 2: Dynamic-K Head Calibration
 
 Stage 2 loads the stage-1 adapter, freezes the teacher path, and trains the lightweight dynamic-K head for elastic horizon prediction.
 
@@ -107,7 +107,7 @@ Main config: `config/train_openpangu_vl_nothink_head.yaml`
 
 By default, the launch scripts set `PYTHONPATH`, `FORCE_TORCHRUN=1`, and `NPROC_PER_NODE=1`. Override `NPROC_PER_NODE` and `CUDA_VISIBLE_DEVICES` for multi-GPU runs.
 
-## Inference
+## 🚀 Inference
 
 Run single-prompt inference with optional image inputs:
 
@@ -132,24 +132,24 @@ scripts/infer.sh \
 
 Useful decoding arguments include `--k-masks`, `--max-new-tokens`, `--block-size`, `--confidence-threshold`, and `--attn-implementation`.
 
-## Implementation Notes
+## 🧩 Implementation Notes
 
 - `model/model_vl_nothink_v6.py` implements the main FLUID-V wrapper.
 - `model/model_nothink_v6_head.py` implements the dynamic-K head training and inference utilities.
 - `llamafactory/src/llamafactory/model/loader.py` imports `model.get_md_model` when `IS_MDModel: true` is set in the YAML config.
 - `llamafactory/src/llamafactory/data/processor/supervised.py` supports FLUID-V bucketed effective-K training through `md_bucket_cutoffs` and `md_bucket_k_masks`.
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 FLUID-V builds on OpenPangu-VL and LLaMA-Factory. We thank the openPangu and LLaMA-Factory teams for releasing the models and training infrastructure that make this work possible.
 
 OpenPangu is a trademark of Huawei Technologies Co., Ltd. Please refer to the original OpenPangu resources and license files for details.
 
-## License
+## 📄 License
 
 The final project license should be added before public release. The bundled LLaMA-Factory code retains its original license under `llamafactory/LICENSE`.
 
-## Citation
+## 📝 Citation
 
 If you find FLUID-V useful for your research, please cite the project. The citation entry below is a placeholder and should be updated after the paper metadata is finalized.
 
