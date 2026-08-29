@@ -1,0 +1,56 @@
+{
+  "pangu_vl_distill_deepctrl": {
+    "file_name": "distill_data/ctrl/distilled_openpangu_vl.jsonl",
+    "num_samples": 20000,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "system": "system"
+    }
+  },
+  "pangu_vl_distill_infinity": {
+    "file_name": "distill_data/infinity/distilled_openpangu_vl.jsonl",
+    "num_samples": 19551,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "system": "system"
+    }
+  },
+  "pangu_vl_distill_moss": {
+    "file_name": "distill_data/moss/distilled_openpangu_vl.jsonl",
+    "num_samples": 20000,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "system": "system"
+    }
+  },
+  "pangu_vl_distill_ultrachat": {
+    "file_name": "distill_data/ultrachat/distilled_openpangu_vl.jsonl",
+    "num_samples": 20000,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "system": "system"
+    }
+  },
+  "pangu_vl_distill_llavanext": {
+    "file_name": "distill_data/llavanext/distilled_openpangu_vl.jsonl",
+    "num_samples": 19656,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "pangu_vl_distill_eval_merge": {
+    "file_name": "distill_data/eval_merge/merged_sharegpt.clean.jsonl",
+    "num_samples": 20546,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  }
+}
