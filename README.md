@@ -59,7 +59,7 @@ Model checkpoints will be released separately. The following placeholder can be 
 
 | Model | Base Model | Components | Link |
 | --- | --- | --- | --- |
-| FLUID-V-OpenPanguVL-7B | FreedomIntelligence/openPangu-VL-7B | Stage-1 LoRA + Stage-2 dynamic-K head | TODO |
+| FLUID-V-OpenPanguVL-7B | FreedomIntelligence/openPangu-VL-7B | Stage-1 LoRA + Stage-2 dynamic-K head | [🤗 Download from Hugging Face](https://huggingface.co/MYTH-Lab/FLUID-V) |
 
 For local experiments, place checkpoints under `saves/` or update the paths in the config files directly.
 
